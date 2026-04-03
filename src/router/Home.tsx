@@ -1,4 +1,3 @@
-import "./Home.css";
 import Search from "../components/Search";
 import { useState } from "react";
 import type { UserProps } from "../types/user";
