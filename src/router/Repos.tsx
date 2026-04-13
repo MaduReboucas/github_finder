@@ -25,16 +25,28 @@ const Repos = () => {
 
       setIsLoading(false);
 
-      console.log(data);
+      setRepos(data);
     };
 
-    loadRepos(username);
+    if (username) {
+      loadRepos(username);
+    }
   }, []);
+
+  if (!repos && isLoading) return <Loader />;
 
   return (
     <div>
       <BackBtn />
-      Repos {username}
+      <h2>Explore os repositórios do usuário: {username}</h2>
+      {repos && repos.length === 0 && <p>Não há repositórios.</p>}
+      {repos && repos.length > 0 && (
+        <div>
+          {repos?.map((repo: RepoProps) => (
+            <p>{repo.name}</p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
